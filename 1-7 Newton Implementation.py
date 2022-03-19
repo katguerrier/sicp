@@ -1,25 +1,18 @@
-# - - utility functions - - 
-
-# absolute value
-def absolute(number):
-  if (number <= 0): return (-1 * number)
-  else: return (number)
-
-# average
-def avg(a, b):
-  return ((a+b)/2)
-
-# - - main methods - - 
 def sqrt(number):
-  iterate(1,number) # begin iterative sequence immediately
+    def absolute(a):
+        if (a <= 0): return (-1 * a)
+        else: return (a)
+        
+    def avg(a,b):
+        return ((a+b)/2)
+    
+    def iterate(guess):
+        newGuess = avg(guess, number/guess)
+        
+        changeP = absolute(1 - (newGuess / guess))
+        if (changeP < 0.0000001): # arbitrary threshold value
+            print (newGuess)
+            
+        else: iterate(newGuess)
 
-def iterate(guess, number):
-  newGuess = avg(guess, number / guess) # Newton's method
-
-  # if guess is changing only a small amount, high confidence, give that guess
-  changePercentile = absolute(1 - newGuess / guess)
-  if (changePercentile < 0.000001): 
-    print(newGuess, changePercentile)
-
-  # otherwise, iterate again
-  else: iterate(newGuess, number)
+    iterate(1)
